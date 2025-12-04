@@ -4,7 +4,7 @@ Classwork for [BIMM143 at UC San Diego](https://bioboot.github.io/bimm143_F25/).
 - Class 04 [R fundamentals](Class06/Class06.md)
 - class 05 [Data Viz with ggplot](Class05/Class05.md)
 - class 06 [R Functions](Class06/Class06.md)
-- Class 07 [Machine Learning](Class07/class 7.md)
+- Class 07 [Machine Learning](Class07/class07.md)
 - Class 08 [PCA Project](Class08/Class08.md)
 - Class 09 [Structural Bioinformatics 1](Class09/Class09.md)
 - Class 10 [Halloween Mini Project](Class10/Class10.md)
