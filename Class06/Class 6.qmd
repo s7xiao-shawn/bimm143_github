@@ -1,4 +1,4 @@
----
+# ---
 title: "Class06: R functions"
 author: "Shawn Xiao (PID:A18276668)"
 format: gfm
