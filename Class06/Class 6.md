@@ -1,0 +1,208 @@
+# Class06: R functions
+Shawn Xiao (PID:A18276668)
+
+All functions in R have at least 3 things:
+
+- A **name**, we pick this and use it to call the function.
+- Input **arguments**, there an be multiple comma seperated inputs to
+  the function.
+- The **body**, lines of R code that do the work of the function.
+
+Our first wee function:
+
+``` r
+add <- function(x){
+  x+1
+}
+```
+
+Let’s test our function
+
+``` r
+add(10)
+```
+
+    [1] 11
+
+``` r
+add12 <- function(x,y=1){
+  x+y
+}
+```
+
+``` r
+add12(10)
+```
+
+    [1] 11
+
+``` r
+add12(10,10)
+```
+
+    [1] 20
+
+## A second function
+
+Let’s try something more interesting. Make a sequence generation tool
+
+The `sample()` function could be useful here
+
+``` r
+sample(1:10, size=3)
+```
+
+    [1]  2  8 10
+
+``` r
+sample(c("A","T","G","C"),size=5,replace=TRUE)
+```
+
+    [1] "C" "G" "C" "T" "A"
+
+Turn this snipet into a function that returns a user sepcified length
+DNA squence, let’s call it `generate_dna`
+
+``` r
+generate_dna <- function(x=10){
+  v <- sample(c("A","T","G","C"),size=x,replace=TRUE)
+  cat("Well Done You!\n")
+  return(v)
+}
+```
+
+``` r
+generate_dna(5)
+```
+
+    Well Done You!
+
+    [1] "G" "T" "C" "C" "G"
+
+``` r
+s <- generate_dna(15)
+```
+
+    Well Done You!
+
+``` r
+s
+```
+
+     [1] "C" "C" "G" "T" "G" "C" "G" "G" "T" "G" "C" "T" "C" "G" "C"
+
+I want the option to return a single element vector like “GGAGTAC”
+
+``` r
+paste(s,collapse="")
+```
+
+    [1] "CCGTGCGGTGCTCGC"
+
+``` r
+generate_dna <- function(x=10, fasta=FALSE){
+  v <- sample(c("A","T","G","C"),size=x,replace=TRUE)
+  
+  cat("Well Done You!\n")
+  
+  # Make a single element vector
+  s <- paste(v,collapse="")
+  
+  # Adding fasta logic
+  if(fasta){
+    return(s)
+  } else{
+    return(v)
+  }
+}
+```
+
+``` r
+generate_dna()
+```
+
+    Well Done You!
+
+     [1] "G" "C" "C" "G" "T" "A" "C" "T" "A" "A"
+
+``` r
+generate_dna(10, fasta=T)
+```
+
+    Well Done You!
+
+    [1] "TAGCCTCCTA"
+
+``` r
+generate_prot <- function(ami=10, fasta=TRUE){
+  a <- c("A","R","N","D","C","Q","E","G","H","I","L","K","M","F","P","S","T","W","Y","V")
+  p <- sample(a,size=ami,replace=TRUE)
+  
+  
+  # Make a single element vector
+  t <- paste(p,collapse="")
+  
+  # Adding fasta logic
+  if(fasta){
+    return(t)
+  } else{
+    return(p)
+  }
+}
+```
+
+``` r
+generate_prot(20)
+```
+
+    [1] "NFSQLIEYGCYWVCDQLATM"
+
+> Q. Generate random protein sequencies between lengths 5 and 12 amino
+> acids.
+
+One approach is to do this by brute force calling our function for each
+length 5 to 12
+
+Another approach is to write a `for()` loop to itterate over the input
+valued 5 to 12
+
+A very useful third R specific apprach is to use the `sapply()`
+function.
+
+``` r
+seq_length <- 5:12
+for(i in seq_length){
+  cat(">",i,"\n")
+  cat(generate_prot(i))
+  cat("\n")
+}
+```
+
+    > 5 
+    LNNAE
+    > 6 
+    KYQFMR
+    > 7 
+    LEVDWYG
+    > 8 
+    IPIYAHMH
+    > 9 
+    DVNDDHFQK
+    > 10 
+    KDDTLCEKAS
+    > 11 
+    EPHWTRACAHR
+    > 12 
+    LFLHNKVIYATN
+
+``` r
+sapply(5:12,generate_prot)
+```
+
+    [1] "MAMYG"        "LHRWFD"       "FAMEIIW"      "FKFRWQTE"     "QRYAWFEFI"   
+    [6] "INPDNHWRGV"   "AVGIHDHKLTN"  "IECEVVAGNWQT"
+
+> **Key Point**: Writing functions in R is doable but not the easiest
+> thing in the world. Starting with a working snippet of code and then
+> using LLM tools to improve and generate addative functions to make it
+> more useful.
