@@ -1,7 +1,7 @@
 ---
 title: "Class 09: Structural Bioinformatics (pt. 1)"
 author: "Shawn Xiao (PID: A18276668)"
-format: pdf
+format: gfm
 toc: True
 ---
 
@@ -88,17 +88,17 @@ chainA_seq <- pdbseq(trim.pdb(hiv, chain="A"))
 I can interactively view these PDB objects with the **bio3dviewer** package. 
 ```{r}
 library(bio3dview)
-# view.pdb(hiv)
+view.pdb(hiv)
 ```
 
 ```{r}
-# sel <- atom.select(hiv,resno=25)
+sel <- atom.select(hiv,resno=25)
 
-# view.pdb(hiv, highlight = sel,
-         # highlight.style = "spacefill",
-         # colorScheme = "chain",
-         # col=c("blue","red"),
-         # backgroundColor = "grey")
+view.pdb(hiv, highlight = sel,
+         highlight.style = "spacefill",
+         colorScheme = "chain",
+         col=c("blue","red"),
+         backgroundColor = "grey")
 ```
 
 
@@ -120,7 +120,7 @@ plot(m)
 Generate a "trajectory" of predicted motion
 
 ```{r}
-mktrj(m, file="ADK_nma.pdb")
+mktrj(m, file="ADK_NMA.pdb")
 ```
 
 
