@@ -25,3 +25,5 @@ Classwork for [BIMM143 at UC San Diego](https://bioboot.github.io/bimm143_F25/).
 
 - Class 19 [Pertussis Immunology](Class19/Class19.md)
 
+- [Find A Gene Project](Find a Gene Project.pdf)
+
